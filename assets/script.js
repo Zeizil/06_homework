@@ -1,5 +1,17 @@
+
+
 const cityEl = document.getElementById("citysearch");
 const srchBtn = document.getElementById("fetch-button");
+const resultsTable = document.getElementById("weather-results");
+const today = moment().format('MMM Do, YYYY');
+
+const generateResult = ({city, today, weatherName, weatherIcon, weatherTemp, weatherHumidity, weatherWind}) =>
+    `<span class="card-body table mx-auto my-4">
+    <h3>${city}, ${today}</h3>
+    <p>${weatherIcon} ${weatherName}</p>
+    <hr>
+    <p>Temperature: ${weatherTemp}<br>Humidity: ${weatherHumidity}<br>Windspeed: ${weatherWind}</p>
+    </span>`;
 
 function getApi(lat, lon) {
     const requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${ApiKey}`;
@@ -14,7 +26,7 @@ function getApi(lat, lon) {
         })
 }
 
-function getCurrentWeather(lat, lon) {
+function getCurrentWeather(lat, lon, city) {
     const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${ApiKey}`
 
     fetch(requestUrl)
@@ -26,6 +38,18 @@ function getCurrentWeather(lat, lon) {
          //data[0].weather
          //data[0].list
          // etc
+         const weatherName = data.weather.main;
+         const weatherIcon = data.weather.icon;
+        //  above two are returning undefined
+         const weatherTemp = data.main.temp;
+         const weatherHumidity= data.main.humidity;
+         const weatherWind = data.wind.speed;
+
+         const result = document.createElement("p");
+         const resultText = document.createTextNode(city + " " + today + "\n" + weatherIcon + " " + weatherName + " Temperature: " + weatherTemp + " Humidity: " + weatherHumidity + " Wind Speed: " + weatherWind);
+         result.appendChild(resultText);
+         resultsTable.appendChild(result);
+
     })
 }
 
@@ -41,7 +65,7 @@ function getLatLon(city) {
          const lat = data[0].lat;
          const lon = data[0].lon;
          //getApi, pass lat and lon
-         getCurrentWeather(lat, lon);
+         getCurrentWeather(lat, lon, city);
          getApi(lat, lon);
     })
 }
