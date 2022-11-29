@@ -1,4 +1,4 @@
-
+// put API key back in 
 
 const cityEl = document.getElementById("citysearch");
 const srchBtn = document.getElementById("fetch-button");
@@ -38,9 +38,10 @@ function getCurrentWeather(lat, lon, city) {
          //data[0].weather
          //data[0].list
          // etc
-         const weatherName = data.weather.main;
-         const weatherIcon = data.weather.icon;
-        //  above two are returning undefined
+         const weatherName = data.weather[0].main;
+        //  const weatherIcon = data.weather[0].icon;
+        //  for icons, if-else for each weather type 
+        
          const weatherTemp = data.main.temp;
          const weatherHumidity= data.main.humidity;
          const weatherWind = data.wind.speed;
