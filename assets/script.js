@@ -1,5 +1,5 @@
 // Add API Key here:
-
+const ApiKey = 'ceea7b7ccba0e98aa2e99b6629fe5210';
 
 const cityEl = document.getElementById("citysearch");
 const srchBtn = document.getElementById("fetch-button");
