@@ -1,4 +1,4 @@
-// put API key back in 
+// Add API Key here:
 
 
 const cityEl = document.getElementById("citysearch");
