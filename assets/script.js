@@ -1,5 +1,6 @@
 // put API key back in 
 
+
 const cityEl = document.getElementById("citysearch");
 const srchBtn = document.getElementById("fetch-button");
 const resultsTable = document.getElementById("weather-results");
@@ -42,12 +43,13 @@ function getCurrentWeather(lat, lon, city) {
         //  const weatherIcon = data.weather[0].icon;
         //  for icons, if-else for each weather type 
         
+        
          const weatherTemp = data.main.temp;
          const weatherHumidity= data.main.humidity;
          const weatherWind = data.wind.speed;
 
          const result = document.createElement("p");
-         const resultText = document.createTextNode(city + " " + today + "\n" + weatherIcon + " " + weatherName + " Temperature: " + weatherTemp + " Humidity: " + weatherHumidity + " Wind Speed: " + weatherWind);
+         const resultText = document.createTextNode(city + " " + today + "\n" + weatherName + " Temperature: " + weatherTemp + " Humidity: " + weatherHumidity + " Wind Speed: " + weatherWind);
          result.appendChild(resultText);
          resultsTable.appendChild(result);
 
